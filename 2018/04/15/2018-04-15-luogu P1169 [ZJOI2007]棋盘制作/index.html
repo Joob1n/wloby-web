@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="这个题是悬线法的练习题，十分 nice，我第一次做的时候，十分尬，问的白学家，写了好久，然后才过，刚刚写了下，还OK吧，1A 写一下这个题的思路 给定一个 01 矩阵，找一个最大的正方形矩阵，和一个长方形矩阵，要求这两个矩阵的 01 是相见分布的就像样例里的这个图，正方形就是红圈这个矩阵  至于为什么用悬线法，我们考虑一个合法的 01 矩阵，我们可以选择其中的任意列作为我们所找的线，然后这条线上的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="luogu P1169 [ZJOI2007]棋盘制作">
+<meta property="og:url" content="https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/index.html">
+<meta property="og:site_name" content="Wloby">
+<meta property="og:description" content="这个题是悬线法的练习题，十分 nice，我第一次做的时候，十分尬，问的白学家，写了好久，然后才过，刚刚写了下，还OK吧，1A 写一下这个题的思路 给定一个 01 矩阵，找一个最大的正方形矩阵，和一个长方形矩阵，要求这两个矩阵的 01 是相见分布的就像样例里的这个图，正方形就是红圈这个矩阵  至于为什么用悬线法，我们考虑一个合法的 01 矩阵，我们可以选择其中的任意列作为我们所找的线，然后这条线上的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://joob1n.github.io/wloby-web/pic/1.png">
+<meta property="article:published_time" content="2018-04-15T06:22:35.000Z">
+<meta property="article:modified_time" content="2026-05-20T11:24:58.924Z">
+<meta property="article:author" content="Joob1n">
+<meta property="article:tag" content="luogu">
+<meta property="article:tag" content="problem of OI">
+<meta property="article:tag" content="solution">
+<meta property="article:tag" content="悬线法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://joob1n.github.io/wloby-web/pic/1.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/wloby-web/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/wloby-web/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/wloby-web/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>luogu P1169 [ZJOI2007]棋盘制作</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/wloby-web/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/wloby-web/2018/04/15/2018-04-15-%E6%82%AC%E7%BA%BF%E6%B3%95/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&text=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&is_video=false&description=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=luogu P1169 [ZJOI2007]棋盘制作&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&name=luogu P1169 [ZJOI2007]棋盘制作&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&t=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        luogu P1169 [ZJOI2007]棋盘制作
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Joob1n</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-04-15T06:22:35.000Z" class="dt-published" itemprop="datePublished">2018-04-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/wloby-web/tags/luogu/" rel="tag">luogu</a>, <a class="p-category" href="/wloby-web/tags/problem-of-OI/" rel="tag">problem of OI</a>, <a class="p-category" href="/wloby-web/tags/solution/" rel="tag">solution</a>, <a class="p-category" href="/wloby-web/tags/%E6%82%AC%E7%BA%BF%E6%B3%95/" rel="tag">悬线法</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>这个题是悬线法的练习题，十分 nice，我第一次做的时候，十分尬，问的白学家，写了好久，然后才过，刚刚写了下，还OK吧，1A</p>
+<p>写一下这个题的思路</p>
+<p>给定一个 01 矩阵，找一个最大的正方形矩阵，和一个长方形矩阵，要求这两个矩阵的 01 是相见分布的就像样例里的这个图，正方形就是红圈这个矩阵</p>
+<p><img src="/wloby-web/pic/1.png"></p>
+<p>至于为什么用悬线法，我们考虑一个合法的 01 矩阵，我们可以选择其中的任意列作为我们所找的线，然后这条线上的任何一个点的 $l[i][j]$ 和 $r[i][j]$ 的最小值就是这个矩阵的长，即</p>
+<p>$$l_{矩阵}&#x3D;min{l[i][j]} (i,j)∈所选线$$</p>
+<p>$$r_{矩阵}&#x3D;min{r[i][j]} (i,j)∈所选线$$</p>
+<p>设我们选的线是褐色格子，那么 $l_{矩阵}$ 就是最左侧的那一列，没有 $r_{矩阵}$</p>
+<p>然后我们就可以用悬线法来处理 $l[i][j], r[i][j]$ 然后 $for$ 就OK了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> II int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IL inline</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R register</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> I 2010</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt; <span class="function">IL <span class="type">void</span> <span class="title">of</span> <span class="params">(R T &amp;a)</span> </span>&#123;</span><br><span class="line">	R <span class="type">char</span> c=<span class="built_in">getchar</span> (); R T w=<span class="number">1</span>, p=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(c)) &#123; <span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>) w=<span class="number">-1</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">isdigit</span>(c)) &#123; p=p*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">	a=w*p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt; <span class="function">IL <span class="type">void</span> <span class="title">Big</span> <span class="params">(R T &amp;a,R T b)</span> </span>&#123; a&lt;b?a=b:<span class="number">0</span>; &#125;</span><br><span class="line"><span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt; <span class="function">IL <span class="type">void</span> <span class="title">Sma</span> <span class="params">(R T &amp;a,R T b)</span> </span>&#123; a&gt;b?a=b:<span class="number">0</span>; &#125;</span><br><span class="line"><span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt; <span class="function">IL <span class="type">void</span> <span class="title">Swap</span><span class="params">(R T &amp;a,R T &amp;b)</span> </span>&#123; R T c=b;b=a;a=c; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* -------------------- Peipei -------------------- */</span></span><br><span class="line"></span><br><span class="line">II n,m,ans1,ans2;</span><br><span class="line">II a[I][I], l[I][I], r[I][I];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">of</span>(n); <span class="built_in">of</span>(m);</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	<span class="keyword">for</span>(R II j=<span class="number">1</span>;j&lt;=m;j++) <span class="built_in">of</span>(a[i][j]);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	<span class="keyword">for</span>(R II j=<span class="number">2</span>;j&lt;=m;j++)</span><br><span class="line">		<span class="keyword">if</span>(a[i][j]==(a[i][j<span class="number">-1</span>]^<span class="number">1</span>)) l[i][j]=l[i][j<span class="number">-1</span>]<span class="number">+1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	<span class="keyword">for</span>(R II j=m<span class="number">-1</span>;j;j--)</span><br><span class="line">		<span class="keyword">if</span>(a[i][j]==(a[i][j<span class="number">+1</span>]^<span class="number">1</span>)) r[i][j]=r[i][j<span class="number">+1</span>]<span class="number">+1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(R II j=<span class="number">1</span>,len=<span class="number">1</span>,ll,rr;j&lt;=m;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		len=<span class="number">1</span>, ll=l[<span class="number">1</span>][j], rr=r[<span class="number">1</span>][j];</span><br><span class="line">		<span class="built_in">Big</span>(ans1,<span class="built_in">min</span>(len,ll+rr<span class="number">+1</span>)*<span class="built_in">min</span>(len,ll+rr<span class="number">+1</span>));</span><br><span class="line">		<span class="built_in">Big</span>(ans2,len*(ll+rr<span class="number">+1</span>));</span><br><span class="line">		<span class="keyword">for</span>(R II i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[i][j]==(a[i<span class="number">-1</span>][j]^<span class="number">1</span>)) &#123;</span><br><span class="line">				len++;</span><br><span class="line">				<span class="built_in">Sma</span>(ll,l[i][j]);</span><br><span class="line">				<span class="built_in">Sma</span>(rr,r[i][j]);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				len=<span class="number">1</span>;</span><br><span class="line">				ll=l[i][j];</span><br><span class="line">				rr=r[i][j];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">Big</span>(ans1,<span class="built_in">min</span>(len,ll+rr<span class="number">+1</span>)*<span class="built_in">min</span>(len,ll+rr<span class="number">+1</span>));</span><br><span class="line">			<span class="built_in">Big</span>(ans2,len*(ll+rr<span class="number">+1</span>));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n%d\n&quot;</span>,ans1,ans2);</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/wloby-web/">首页</a></li>
+        
+          <li><a href="/wloby-web/about/">关于</a></li>
+        
+          <li><a href="/wloby-web/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&text=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&is_video=false&description=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=luogu P1169 [ZJOI2007]棋盘制作&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&title=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&name=luogu P1169 [ZJOI2007]棋盘制作&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/&t=luogu P1169 [ZJOI2007]棋盘制作"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2026
+    Joob1n
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/wloby-web/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

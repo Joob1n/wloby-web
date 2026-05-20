@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="一．巴什博奕（Bash Game）：首先我们来玩一个比较古老的报数游戏。A和B一起报数，每个人每次最少报一个,最多报4个。轮流报数,看谁先报到30.如果不知道巴什博弈的可能会觉得这个是个有运气成分的问题，但是如果知道的人一定知道怎样一定可以赢。比如A先报数的话,那么B一定可以赢(这里假定B知道怎么正确的报数)B可以这样报数,每次报5-k(A)个数,其中k(A)是A报数的个数这样的话没一次两人报完数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博弈论">
+<meta property="og:url" content="https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Wloby">
+<meta property="og:description" content="一．巴什博奕（Bash Game）：首先我们来玩一个比较古老的报数游戏。A和B一起报数，每个人每次最少报一个,最多报4个。轮流报数,看谁先报到30.如果不知道巴什博弈的可能会觉得这个是个有运气成分的问题，但是如果知道的人一定知道怎样一定可以赢。比如A先报数的话,那么B一定可以赢(这里假定B知道怎么正确的报数)B可以这样报数,每次报5-k(A)个数,其中k(A)是A报数的个数这样的话没一次两人报完数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-04-08T06:20:02.000Z">
+<meta property="article:modified_time" content="2026-05-20T11:24:58.920Z">
+<meta property="article:author" content="Joob1n">
+<meta property="article:tag" content="algorithm of OI">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/wloby-web/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/wloby-web/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/wloby-web/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>博弈论</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/wloby-web/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/wloby-web/2018/04/08/2018-04-08-gcd&exgcd/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/wloby-web/2018/04/08/2018-04-08-%E7%B4%A0%E6%95%B0%E7%AD%9B/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&text=博弈论"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&is_video=false&description=博弈论"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=博弈论&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&name=博弈论&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&t=博弈论"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        博弈论
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Joob1n</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-04-08T06:20:02.000Z" class="dt-published" itemprop="datePublished">2018-04-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/wloby-web/tags/algorithm-of-OI/" rel="tag">algorithm of OI</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>一．巴什博奕（Bash Game）：<br>首先我们来玩一个比较古老的报数游戏。A和B一起报数，每个人每次最少报一个,最多报4个。轮流报数,看谁先报到30.<br>如果不知道巴什博弈的可能会觉得这个是个有运气成分的问题，但是如果知道的人一定知道怎样一定可以赢。<br>比如A先报数的话,那么B一定可以赢(这里假定B知道怎么正确的报数)<br>B可以这样报数,每次报5-k(A)个数,其中k(A)是A报数的个数这样的话没一次<br>两人报完数之后会变成5 10 15 20 25 30这样是不是B一定会赢呢?是不是有一种被欺骗的感觉呢?好吧下面我们来看看这个原理。我们先看下一个一眼就能看出答案的例子 比如说我们报到5(4+1),每次报最多报4个,最少报1个.那么是不是后者一定可以赢呢？答案是肯定的。好了到这巴什博弈的精髓基本就OK了。<br>那么如果我们要报到n+1,每次最多报n个,最少报1个的话,后者一定能够赢。<br>现在我们需要报数到n,而每次最多报数m个,最少报数1个.我们可以化成这样<br>n &#x3D; k*(1+m)+r(0 &lt;&#x3D; r &lt;&#x3D; m）这样的话如果r不等于0那么先手一定会赢，为什么呢？首先先手报r个,那么剩下k倍(1+m)个数,那么我们每次报数1+m-k(B)个数就一定能保证最后剩下1+m个,那么就到了上面我们说的那个了,先手就一定会赢,如果r&#x3D;0那么后手一定会赢,道理一样的。<br>到这巴什博弈也就介绍完了,知道这个道理之后我们也可以去骗小朋友了。-_-&#x2F;&#x2F;<br>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CLR(arr, val) memset(arr, val, sizeof(arr))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;Input.txt&quot;, &quot;r&quot;, stdin);</span></span><br><span class="line">    <span class="type">int</span> N, num, limit;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;N);</span><br><span class="line">    <span class="keyword">while</span>(N--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;num, &amp;limit);</span><br><span class="line">        <span class="keyword">if</span>(num % (limit + <span class="number">1</span>) != <span class="number">0</span>) <span class="comment">//必胜局面</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Win\n&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;Lose\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">​</span><br></pre></td></tr></table></figure>
+
+<p>二．威佐夫博奕（Wythoff Game）：<br>   这种博弈比前面一种要稍微复杂一点。我们来看下下面这个游戏。<br>   有两堆火柴棍,每次可以从某一堆取至少1根火柴棍(无上限)，或者从两堆取相同的火柴棍数。最后取完的是胜利者。好了,如果你不知道这个博弈定理,对于小数目的火柴棍数,可能还能推出来,但是如果火柴棍数一多,就不行了。看了下面的这个介绍,你也会有一种被骗的感觉。<br>   首先我们知道两堆火柴是没有差别的,也就是说第一堆有a根,第二堆有b根和第一堆有b根,第二堆有a根是一样的结果。<br>   我们用一个二维的状态（a,b)来记录当前剩下的火柴数，表示第一堆剩下a根火柴,第二堆剩下b根火柴。同样我们假设两个人的编号是A和B，且A先取。<br>那么如果某个人遇到了这样的状态(0,0)那么也就是说这个人输了。这样的状态我们叫做奇异状态,也可以叫做失败态。<br>那么接下来的几个失败态为(1,2),(3,5),(4,7),(6,10),(8,13)……<br>我们用a[i]表示失败态中的第一个,b[i]表示失败态中的第二个.(i从0开始).<br>那么我们可以看到b[i] &#x3D; a[i]+i;（i &gt;&#x3D; 0）,a[i]是前面的失败态中没有出现过的最小的整数<br>下面我们可以得到三个基本的结论。<br>  1.每个数仅包含在一个失败态中<br>  首先我们知道a[k]是不可能和前面的失败态中的a[i],b[i]重复的(这点由a[i]的得到可以知道)<br>b[k] &#x3D; a[k]+k &gt; a[k-1]+k&gt;a[k-1]+k-1+1&gt;a[k-1]+(k-1) &#x3D; b[k-1]&gt;a[k-1]这样我们知道每个数仅在一个失败态中。<br>  2.每个失败态可以转到非失败态。<br> 加入当前的失败态为(a,b)，那么如果我们只在一堆中取的话,肯定会变成非失败态(这点由第一点可以保证),如果从两堆同时取的话,由于每个失败态的差是不一样的,所以也不可能得到一个失败态。也就是说一个失败态不管你怎么取,都会得到一个非失败态。<br>   3.每个非失败态都可以转到一个失败态<br>对于这个结论,首先我们要知到每个状态(a,b)要么a &#x3D; a[i],要么b &#x3D; b[i].(每个数都出现在一个失败态中),下面我们分两种情况来讨论<br>   I.a &#x3D; a[i].如果b &#x3D; a的话那么一次取完就变成了(0,0).如果b &gt; b[i]的话,那么我们从第二堆中取走b-b[i]就变成了一个失败态。如果b &lt; b[i].那么我们从两堆中同时取走a-a[b-a[i]]这样得到失败态(a[b-a[i]],a[b-a[i]]+b-a[i])(a[i] &#x3D; a)<br>   II.b &#x3D; b[i].如果a &gt; a[i]那么我们从第一堆中取走a-a[i]根火柴.<br>              如果a &lt; a[i].这里又分两种情况。第一是a &#x3D; a[k](k &lt; i)<br>那么我们从第二堆取走b - b[k]就行了。<br>第二是a &#x3D; b[k]这样的话由于两堆火柴是没有区别的,所以我们把b变成a[k]就行了,也即是从第二堆火柴中取走b - a[k]就变成了失败态<br>至于怎么判断一个状态是否是失败态.我们可以用下面的方法来判断(本人暂时还不会证明)<br>  a[i] &#x3D; <a href="%E8%BF%99%E9%87%8C%E7%9A%84%E4%B8%AD%E6%8B%AC%E5%8F%B7%E8%A1%A8%E7%A4%BA%E5%90%91%E4%B8%8B%E5%8F%96%E6%95%B4">i*(1+√5)&#x2F;2</a>   b[i] &#x3D; a[i]+i;<br>  那么这就是一个失败态<br>代码如下：<br>​</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> CLR(arr, val) memset(arr, val, sizeof(arr))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;Input.txt&quot;, &quot;r&quot;, stdin);</span></span><br><span class="line">    <span class="type">int</span> num1, num2, tmp; <span class="comment">//第一堆剩的数量为num1,第二堆剩num2</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;num1, &amp;num2) != EOF)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(num1 &gt; num2)</span><br><span class="line">            <span class="built_in">swap</span>(num1, num2);</span><br><span class="line">        tmp = <span class="built_in">floor</span>((num2 - num1) * (<span class="number">1</span> + <span class="built_in">sqrt</span>(<span class="number">5.0</span>)) / <span class="number">2.0</span>); <span class="comment">//黄金分割</span></span><br><span class="line">        <span class="keyword">if</span>(tmp == num1) <span class="built_in">printf</span>(<span class="string">&quot;Lose\n&quot;</span>); <span class="comment">//奇异局势必败</span></span><br><span class="line">        <span class="keyword">else</span>    <span class="built_in">printf</span>(<span class="string">&quot;Win\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>三．尼姆博奕（Nimm Game）：</p>
+<p>指的是这样的一个博弈游戏，目前有任意堆石子，每堆石子个数也是任意的，双方轮流从中取出石子，规则如下：<br>1)每一步应取走至少一枚石子；每一步只能从某一堆中取走部分或全部石子；<br>2)如果谁取到最后一枚石子就胜。<br>也就是尼姆博弈（Nimm Game）。<br>必败局面：也叫奇异局势。无论做出何出操作，最终结果都是输的局面。必败局面经过2次操作后，可以达到另一个必败局面。<br>必胜局面：经过1次操作后可以达到必败局面。<br>即当前局面不是必败局面就是必胜局面，而必胜局面可以一步转变成必败局面。<br>最终状态：<br>（1）最后剩下一堆石子；（必胜局面）<br>（2）剩下两堆，每堆一个；（必败局面）<br>（3）当石子剩下两堆，其中一堆只剩下1颗，另一堆剩下多于n颗石子时，当前取的人只需将多于1颗的那一堆取出n-1颗，则局面变为刚才提到的必败局面。（必胜局面）<br>判断当前局势是否为必胜（必败）局势：<br>1）把所有堆的石子数目用二进制数表示出来，当全部这些数按位异或结果为0时当前局面为必败局面，否则为必胜局面；<br>2）在必胜局面下，因为所有数按位异或的结果是大于零的，那么通过一次取，将这个（大于其它所有数按位异或的结果的）数下降到其它所有数按位异或的结果，这时局面就变为必败局面了。<br>定理：一组自然数中必然存在一个数，它大于等于其它所有数按位异或的结果。<br>证明：原命题等价于，设a1＾a2＾… ＾an&#x3D;p，p≠0时，必存在k，使得ak＾p&lt;ak（当p&#x3D;0时，对于任意的k，有ak＾p&#x3D;ak）。<br>设p的最高位是第q位，则至少存在一个k，使得ak的第q位也是1，而ak＾p的第q位为0，所以ak^p&lt;ak<br>    补缀一点，（a＾b）＾b&#x3D;a＾（b＾b）&#x3D;a＾0&#x3D;a，所以ak＾p相当于“其它所有数按位异或的结果”。<br>例1：2 45 45<br>45＾45＝0,45和45的异或等于0。<br>例 2：3 3 6 9<br>局势（3,6，9）因为3＾6＾9不等于0，所以这是一个必胜局势。<br>　3　011<br>＾6　110<br>　5　101　<br>即从第3堆中的9个中取走9－5＝4个，则（3,6，9）－＞（3,6，5），3＾6＾5＝0，故（3,6，5）为奇异局势，即从必胜局势转变成必败局势。<br>代码如下：<br>​</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> temp[ <span class="number">20</span> ]; <span class="comment">//火柴的堆数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i, n, min;</span><br><span class="line">    <span class="keyword">while</span>( cin &gt;&gt; n )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>( i = <span class="number">0</span>; i &lt; n; i++ )</span><br><span class="line">            cin &gt;&gt; temp[ i ]; <span class="comment">//第i个火柴堆的数量</span></span><br><span class="line">        min = temp[ <span class="number">0</span> ];</span><br><span class="line">        <span class="keyword">for</span>( i = <span class="number">1</span>; i &lt; n ; i++ )</span><br><span class="line">            min = min^temp[ i ]; <span class="comment">//按位异或</span></span><br><span class="line">        <span class="keyword">if</span>( min == <span class="number">0</span> )</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Lose&quot;</span> &lt;&lt; endl; <span class="comment">//输</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Win&quot;</span> &lt;&lt; endl; <span class="comment">//赢</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/wloby-web/">首页</a></li>
+        
+          <li><a href="/wloby-web/about/">关于</a></li>
+        
+          <li><a href="/wloby-web/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&text=博弈论"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&is_video=false&description=博弈论"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=博弈论&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&title=博弈论"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&name=博弈论&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-%E5%8D%9A%E5%BC%88%E8%AE%BA/&t=博弈论"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2026
+    Joob1n
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/wloby-web/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

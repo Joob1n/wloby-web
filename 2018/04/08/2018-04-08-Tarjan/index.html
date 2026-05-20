@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Tarjan是多种算法的总称，因为Tarjan这个人太牛X了，那我们今天就来看一看Tarjan神的算法之一 ：Tarjan求割边割点； 首先我们要清晰什么是割边割点：​割点：​    首先我们有一张连通图： ​ 对于这张图，显然它是一张联通图，那么割点的定义就是：“某一个点A，若删除这个点并且删去这个点所练的边，那么这张图的强联通分量增多”； 若删除点3及相连的边后，强联通分量就变成了{1,2}和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tarajn">
+<meta property="og:url" content="https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/index.html">
+<meta property="og:site_name" content="Wloby">
+<meta property="og:description" content="Tarjan是多种算法的总称，因为Tarjan这个人太牛X了，那我们今天就来看一看Tarjan神的算法之一 ：Tarjan求割边割点； 首先我们要清晰什么是割边割点：​割点：​    首先我们有一张连通图： ​ 对于这张图，显然它是一张联通图，那么割点的定义就是：“某一个点A，若删除这个点并且删去这个点所练的边，那么这张图的强联通分量增多”； 若删除点3及相连的边后，强联通分量就变成了{1,2}和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img.blog.csdn.net/20170731210422085?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcHJldGVuZF9mYWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="article:published_time" content="2018-04-08T06:18:51.000Z">
+<meta property="article:modified_time" content="2026-05-20T11:24:58.918Z">
+<meta property="article:author" content="Joob1n">
+<meta property="article:tag" content="algorithm of OI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170731210422085?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcHJldGVuZF9mYWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/wloby-web/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/wloby-web/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/wloby-web/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Tarajn</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/wloby-web/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/wloby-web/2018/04/08/2018-04-08-MST/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/wloby-web/2018/04/08/2018-04-08-%E5%B9%B6%E6%9F%A5%E9%9B%86/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&text=Tarajn"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&is_video=false&description=Tarajn"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tarajn&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&name=Tarajn&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&t=Tarajn"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Tarajn
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Joob1n</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-04-08T06:18:51.000Z" class="dt-published" itemprop="datePublished">2018-04-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/wloby-web/tags/algorithm-of-OI/" rel="tag">algorithm of OI</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Tarjan是多种算法的总称，因为Tarjan这个人太牛X了，那我们今天就来看一看Tarjan神的算法之一 ：Tarjan求割边割点；</p>
+<p>首先我们要清晰什么是割边割点：<br>​<br>割点：<br>​    首先我们有一张连通图：<br><img src="http://img.blog.csdn.net/20170731210422085?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcHJldGVuZF9mYWw=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>​</p>
+<p>对于这张图，显然它是一张联通图，那么割点的定义就是：“某一个点A，若删除这个点并且删去这个点所练的边，那么这张图的强联通分量增多”；</p>
+<p>若删除点3及相连的边后，强联通分量就变成了{1,2}和{4,5,6} (点3已删除)；</p>
+<p>那么割边呢？</p>
+<p>显然，根据割点的定义，割边的定义可以推得：“某一条边B，若删除该边，则所在图的强联通分量增多”；这个定义和割点的定义极其相似；<br>​<br>则，在上图中，若删除3—4这条边，改图的强联通分量数目改变，由{1,2,3,4,5,6}—&gt;{1,2,3}和{4,5,6}；所以，该图中3—4这条边就是该图的割边；<br>​<br>同样，一重点内容个图中的割点割边有时候不止一个；<br>​<br>​<br>而Tarjan是怎么求割边割点呢？？！<br>用一个dfs的思想，建一棵搜索树；<br>然后我们有一个结论：<br>​<br> 割点：&lt;1&gt; 若这个点A是根节点，那么只要它有两棵及以上的子树，那么它必为割点；<br>​        &lt;2&gt; 若这个点A不是根节点，则如果它所有儿子的LOW都小于等于节点A的DFN，则节点A是割点；<br>​<br>​<br>割边同样可以类比割点的性质；<br>割边：&lt;1&gt; 若该节点A，与它的子节点B，若节点B的LOW小于A的DFN，则A——B是割边；<br>​<br>割点：</p>
+<p>证明&lt;1&gt;：若该根节点A含有两棵及以上子树，则删去节点A，其子树必定成为独立的强联通分量，且数量增多；反之，若只含有一棵子树，则节点A删除后对原图联通性毫无影响；</p>
+<p>证明&lt;2&gt;：若节点A非根节点，且没有一个儿子的LOW小于A的DFN，即没有回边指向节点A的祖先，所以以节点A为根的子树是通过节点A来连接到整棵树上的，所以删除节点A后，该子树脱落，强联通分量增加；<br>​<br>割边：</p>
+<p>证明&lt;1&gt;：若节点A的儿子B，LOW[B]&gt;DFN[A] ，则以B为根节点的子树是由A——B这条边连接到整棵树中的，所以删除A——B，该子树脱落，强联通分量增加；</p>
+<p>作为一个程序员，我们看重的不能只有思想，还要有代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Tarjan</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> child=<span class="number">0</span>;</span><br><span class="line">	DFN[x]=LOW[x]=++_num;</span><br><span class="line">	<span class="keyword">for</span>(R II i=head[x];i;i=aa[i].up)</span><br><span class="line">	&#123;</span><br><span class="line">		R II go=aa[i].to;</span><br><span class="line">		<span class="keyword">if</span>(!DFN[go])&#123;</span><br><span class="line">			child++;</span><br><span class="line">			fa[go]=x;</span><br><span class="line">			<span class="built_in">Tarjan</span>(go);</span><br><span class="line">			<span class="keyword">if</span>(LOW[go]&gt;DFN[x]) ...</span><br><span class="line">			<span class="comment">// x 和 go所连的边是一条割边；</span></span><br><span class="line"></span><br><span class="line">			LOW[x]=<span class="built_in">min</span>(LOW[go],LOW[x]);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">if</span>(LOW[go]&gt;=DFN[x]&amp;&amp;x!=root)  bit[x]=<span class="number">1</span>;</span><br><span class="line">			<span class="comment">// x 是根时 ，x 是一个割点；</span></span><br><span class="line">			<span class="keyword">if</span>(x==root&amp;&amp;child&gt;<span class="number">1</span>)  bit[x]=<span class="number">1</span>;</span><br><span class="line">			<span class="comment">// x 不是根时 ，x 是割点；</span></span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(go!=fa[x])&#123;</span><br><span class="line">				LOW[x]=<span class="built_in">min</span>(LOW[x],DFN[go]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">// 原图不一定是一个强联通分量；</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(!DFN[i])&#123;</span><br><span class="line">		root=i;</span><br><span class="line">		<span class="built_in">Tarjan</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>by pretend-fal；<br>END；</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/wloby-web/">首页</a></li>
+        
+          <li><a href="/wloby-web/about/">关于</a></li>
+        
+          <li><a href="/wloby-web/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&text=Tarajn"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&is_video=false&description=Tarajn"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tarajn&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&title=Tarajn"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&name=Tarajn&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-Tarjan/&t=Tarajn"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2026
+    Joob1n
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/wloby-web/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

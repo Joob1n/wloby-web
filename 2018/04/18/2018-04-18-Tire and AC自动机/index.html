@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[TOC] 写在前面 Trie 是一个前置知识，所以我就从网上找了些介绍，然后借(Ctrl+C)鉴(Ctrl+V)过来了，所以要是有些神乎其神的地方我要是解释不了，大家可以自行百度 QAQ 然后是 AC自动机 这个是这篇 blog 主要讲的东西，但是我觉得对于这种字符串的东西，还是口胡的地方比较多，所以有关 AC自动机 的篇幅也不会太长，主要是在黑板上画来画去 然后我们就开始了   Trie or">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tire and AC自动机">
+<meta property="og:url" content="https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/index.html">
+<meta property="og:site_name" content="Wloby">
+<meta property="og:description" content="[TOC] 写在前面 Trie 是一个前置知识，所以我就从网上找了些介绍，然后借(Ctrl+C)鉴(Ctrl+V)过来了，所以要是有些神乎其神的地方我要是解释不了，大家可以自行百度 QAQ 然后是 AC自动机 这个是这篇 blog 主要讲的东西，但是我觉得对于这种字符串的东西，还是口胡的地方比较多，所以有关 AC自动机 的篇幅也不会太长，主要是在黑板上画来画去 然后我们就开始了   Trie or">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://joob1n.github.io/wloby-web/pic/2.png">
+<meta property="og:image" content="https://joob1n.github.io/wloby-web/pic/3.png">
+<meta property="og:image" content="https://joob1n.github.io/wloby-web/pic/4.png">
+<meta property="article:published_time" content="2018-04-18T07:31:42.000Z">
+<meta property="article:modified_time" content="2026-05-20T11:24:58.925Z">
+<meta property="article:author" content="Joob1n">
+<meta property="article:tag" content="AC自动机">
+<meta property="article:tag" content="Tire">
+<meta property="article:tag" content="algorithm of OI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://joob1n.github.io/wloby-web/pic/2.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/wloby-web/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/wloby-web/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/wloby-web/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Tire and AC自动机</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/wloby-web/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/wloby-web/2018/04/22/2018-04-22-FHQ%20Treap/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/wloby-web/2018/04/15/2018-04-15-luogu%20P1169%20%5BZJOI2007%5D%E6%A3%8B%E7%9B%98%E5%88%B6%E4%BD%9C/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&text=Tire and AC自动机"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&is_video=false&description=Tire and AC自动机"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tire and AC自动机&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&name=Tire and AC自动机&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&t=Tire and AC自动机"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Trie-or-%E5%AD%97%E5%85%B8%E6%A0%91"><span class="toc-number">2.</span> <span class="toc-text">Trie or 字典树</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E6%A0%91%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">字典树的概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%82%A3%E4%BB%80%E4%B9%88%E6%98%AFTrie%EF%BC%9F%EF%BC%9F%EF%BC%81"><span class="toc-number">2.2.</span> <span class="toc-text">那什么是Trie？？！</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E6%A0%91%E6%9C%89%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8%EF%BC%9A"><span class="toc-number">2.3.</span> <span class="toc-text">字典树有三个基本性质：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#But-why%EF%BC%9F%EF%BC%9F%EF%BC%81"><span class="toc-number">2.4.</span> <span class="toc-text">But why？？！</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#because-%E8%BF%99%E6%98%AF%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="toc-number">2.5.</span> <span class="toc-text">because 这是基本性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">2.6.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">2.7.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AC%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="toc-number">3.</span> <span class="toc-text">AC自动机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">3.1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3"><span class="toc-number">3.1.1.</span> <span class="toc-text">了解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">3.1.2.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E8%87%B4%E6%80%9D%E8%B7%AF"><span class="toc-number">3.2.</span> <span class="toc-text">大致思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AD%A5%E8%B5%B0"><span class="toc-number">3.2.1.</span> <span class="toc-text">三步走</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E6%83%B3%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.3.</span> <span class="toc-text">思想实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E8%A6%81%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F%EF%BC%9F%EF%BC%81"><span class="toc-number">3.3.1.</span> <span class="toc-text">我要做什么？？！</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E5%81%9A%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">各种做法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9A%B4%E5%8A%9B"><span class="toc-number">3.4.1.</span> <span class="toc-text">1.暴力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-KMP%E4%BC%98%E5%8C%96"><span class="toc-number">3.4.2.</span> <span class="toc-text">2.KMP优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-AC%E8%87%AA%E5%8A%A8%E6%9C%BA%E4%BC%98%E5%8C%96"><span class="toc-number">3.4.3.</span> <span class="toc-text">3.AC自动机优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AA%E6%96%B0%E4%BA%8B%E7%89%A9%E7%9A%84%E5%BC%80%E5%A7%8B%E9%83%BD%E6%98%AF%E5%BC%82%E6%83%B3%E5%A4%A9%E5%BC%80"><span class="toc-number">3.4.3.1.</span> <span class="toc-text">每个新事物的开始都是异想天开</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%9D%EF%BC%8C%E4%B8%8A%E4%B8%80%E4%B8%AA%E5%A5%BD%E5%83%8F%E6%B2%A1%E4%BB%80%E4%B9%88%E7%94%A8"><span class="toc-number">3.4.3.2.</span> <span class="toc-text">额，上一个好像没什么用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B2%A1%E6%83%B3%E5%88%B0%E4%B9%9F%E8%A6%81%E6%83%B3%E5%88%B0%E3%80%82%E3%80%82%E3%80%82%E3%80%82"><span class="toc-number">3.4.3.3.</span> <span class="toc-text">没想到也要想到。。。。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%86%E6%98%AF%E9%82%A3%E4%BA%9B%E5%92%8C%E8%BF%99-k-%E4%B8%AA%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E5%91%A2"><span class="toc-number">3.4.3.4.</span> <span class="toc-text">但是那些和这 k 个不一样的呢</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#code%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.5.</span> <span class="toc-text">code实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Build-fail"><span class="toc-number">3.5.1.</span> <span class="toc-text">Build_fail</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E6%92%AD%E4%B8%80%E6%AE%B5-fail"><span class="toc-number">3.5.1.1.</span> <span class="toc-text">插播一段 fail</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8"><span class="toc-number">3.6.</span> <span class="toc-text">简单应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solution"><span class="toc-number">3.7.</span> <span class="toc-text">solution</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#END"><span class="toc-number">4.</span> <span class="toc-text">END</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Tire and AC自动机
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Joob1n</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-04-18T07:31:42.000Z" class="dt-published" itemprop="datePublished">2018-04-18</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/wloby-web/tags/AC%E8%87%AA%E5%8A%A8%E6%9C%BA/" rel="tag">AC自动机</a>, <a class="p-category" href="/wloby-web/tags/Tire/" rel="tag">Tire</a>, <a class="p-category" href="/wloby-web/tags/algorithm-of-OI/" rel="tag">algorithm of OI</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>[TOC]</p>
+<h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><ul>
+<li>Trie 是一个前置知识，所以我就从网上找了些介绍，然后借(Ctrl+C)鉴(Ctrl+V)过来了，所以要是有些神乎其神的地方我要是解释不了，大家可以自行百度 QAQ</li>
+<li>然后是 AC自动机 这个是这篇 blog 主要讲的东西，但是我觉得对于这种字符串的东西，还是口胡的地方比较多，所以有关 AC自动机 的篇幅也不会太长，主要是在黑板上画来画去</li>
+<li>然后我们就开始了</li>
+</ul>
+<hr>
+<h1 id="Trie-or-字典树"><a href="#Trie-or-字典树" class="headerlink" title="Trie or 字典树"></a>Trie or 字典树</h1><h5 id="字典树的概念"><a href="#字典树的概念" class="headerlink" title="字典树的概念"></a>字典树的概念</h5><ul>
+<li>字典树，因为它的搜索快捷的特性被单词搜索系统使用，故又称单词查找树。它是一种树形结构的数据结构。之所以快速，是因为它用空间代替了速度。</li>
+</ul>
+<h5 id="那什么是Trie？？！"><a href="#那什么是Trie？？！" class="headerlink" title="那什么是Trie？？！"></a>那什么是Trie？？！</h5><ul>
+<li>其实就是把一些字符串连到一个根节点上，既然有根节点了，那一定有了一颗树，那么，我们把这些串形成的树叫作 <strong>Trie</strong>；</li>
+</ul>
+<h5 id="字典树有三个基本性质："><a href="#字典树有三个基本性质：" class="headerlink" title="字典树有三个基本性质："></a>字典树有三个基本性质：</h5><ul>
+<li>根节点不包含字符，除根节点外每一个节点都只包含一个字符</li>
+<li>从根节点到某一个节点，路径上经过的字符连接起来，就是该节点对应的字符串</li>
+<li>每个节点的所有子节点包含的字符都不相同。</li>
+</ul>
+<h4 id="But-why？？！"><a href="#But-why？？！" class="headerlink" title="But why？？！"></a>But why？？！</h4><h4 id="because-这是基本性质"><a href="#because-这是基本性质" class="headerlink" title="because 这是基本性质"></a>because 这是基本性质</h4><p>代码 code ：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> II int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IL inline</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R register</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> I 123456</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt; <span class="function">IL <span class="type">void</span> <span class="title">of</span> <span class="params">(R T &amp;a)</span> </span>&#123;</span><br><span class="line">	R <span class="type">char</span> c=<span class="built_in">getchar</span> (); R T w=<span class="number">1</span>, p=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isdigit</span>(c)) &#123; <span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>) w=<span class="number">-1</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">isdigit</span>(c)) &#123; p=p*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">	a=w*p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* -------------------- Peipei -------------------- */</span></span><br><span class="line"></span><br><span class="line">II n,Q,len,tot,root;</span><br><span class="line">II a[I];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">POI</span> &#123; II up[<span class="number">10</span>]; II is; &#125; Tr[I];</span><br><span class="line"><span class="function">IL II <span class="title">npoi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	tot++;</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">0</span>;i&lt;=<span class="number">9</span>;i++)</span><br><span class="line">		Tr[tot].up[i]=<span class="number">0</span>;</span><br><span class="line">	Tr[tot].is=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> tot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IL <span class="type">void</span> <span class="title">in</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">of</span>(len);</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=len;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%1d&quot;</span>,&amp;a[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IL <span class="type">void</span> <span class="title">join</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	R II pi=root;</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=len;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(!Tr[pi].up[a[i]])</span><br><span class="line">			Tr[pi].up[a[i]]=<span class="built_in">npoi</span>();</span><br><span class="line">		pi=Tr[pi].up[a[i]];</span><br><span class="line">	&#125;</span><br><span class="line">	Tr[pi].is=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IL <span class="type">bool</span> <span class="title">ask</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	R II pi=root;</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=len;i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(!Tr[pi].up[a[i]]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		pi=Tr[pi].up[a[i]];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> Tr[pi].is;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">of</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">in</span>(), <span class="built_in">join</span>();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">of</span>(Q);</span><br><span class="line">	<span class="keyword">while</span> ( Q -- ) &#123;</span><br><span class="line">		<span class="built_in">in</span>();</span><br><span class="line">		<span class="built_in">ask</span>() ? <span class="built_in">puts</span>(<span class="string">&quot;Y&quot;</span>) : <span class="built_in">puts</span>(<span class="string">&quot;N&quot;</span>) ;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看不懂我的代码？？！ 我并没有办法。。。。。。。。。。。。。。</p>
+<p>接下来是网上的的介绍，我就Ctrl+C+V过来了，我也没怎么看，ennnnnnnnn 大概是些定义，可以了解下</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>可以最大限度地减少无谓的字符串比较，故可以用于词频统计和大量字符串排序。跟哈希表比较：</li>
+<li>最坏情况时间复杂度比hash表好</li>
+<li>没有冲突，除非一个key对应多个值（除key外的其他信息）</li>
+<li>自带排序功能（类似Radix Sort），中序遍历trie可以得到排序。</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>虽然不同单词共享前缀，但其实trie是一个以空间换时间的算法。其每一个字符都可能包含至多字符集大小数目的指针（不包含卫星数据）。</li>
+<li>每个结点的子树的根节点的组织方式有几种。</li>
+<li>果默认包含所有字符集，则查找速度快但浪费空间（特别是靠近树底部叶子）。</li>
+<li>如果用链接法(如左儿子右兄弟)，则节省空间但查找需顺序（部分）遍历链表。</li>
+<li>alphabet reduction: 减少字符宽度以减少字母集个数。,</li>
+<li>对字符集使用bitmap，再配合链接法。</li>
+<li>如果数据存储在外部存储器等较慢位置，Trie会较hash速度慢（hash访问O(1)次外存，Trie访问O(树高)）。</li>
+<li>长的浮点数等会让链变得很长。可用bitwise trie改进。</li>
+</ul>
+<p>然后 Trie 我们就讲到这里</p>
+<hr>
+<h1 id="AC自动机"><a href="#AC自动机" class="headerlink" title="AC自动机"></a>AC自动机</h1><p><em>伪·自动AC机 nice</em></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="了解"><a href="#了解" class="headerlink" title="了解"></a>了解</h3><p>在学一个东西之前，我们要先了解这个东西是用来干什么的，所以呢，我现在要先说出一个最模糊的概念，也是最容易忽略的：</p>
+<blockquote>
+<p>AC自动机是处理字符串的有力工具</p>
+</blockquote>
+<p>然后我们再继续了解下它的其他概念；</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>**AC自动机 ** <code>Aho-Corasick automation，该算法在1975年产生于贝尔实验室，是著名的多模匹配算法之一。</code></li>
+<li><strong>常见例子</strong> <code>给出n个单词，再给出一段包含m个字符的文章，让你找出有多少个单词在文章里出现过。</code></li>
+<li><strong>学习前提</strong> <code>要搞懂AC自动机，先得有字典树Trie和KMP模式匹配算法的基础知识。</code></li>
+<li><strong>与KMP区分</strong> <code>KMP算法是单模式串的字符匹配算法，AC自动机是多模式串的字符匹配算法。</code></li>
+</ul>
+<h2 id="大致思路"><a href="#大致思路" class="headerlink" title="大致思路"></a>大致思路</h2><h3 id="三步走"><a href="#三步走" class="headerlink" title="三步走"></a>三步走</h3><ul>
+<li>Trie树</li>
+<li>Fail指针</li>
+<li>匹配</li>
+</ul>
+<p>Trie 我们之前讲了，所以呢，我们已经走了第一步，【开心】那么我们还有两步要走，那么当然是接着走了。。。。</p>
+<h2 id="思想实现"><a href="#思想实现" class="headerlink" title="思想实现"></a>思想实现</h2><h3 id="我要做什么？？！"><a href="#我要做什么？？！" class="headerlink" title="我要做什么？？！"></a>我要做什么？？！</h3><ul>
+<li>这是一个值得思考的问题，只有我们知道了要干什么我们才能去实现；</li>
+<li>就像刚刚简介里的经典问题：<code>给出n个单词，再给出一段包含m个字符的文章，让你找出有多少个单词在文章里出现过。</code></li>
+<li>那么我们通过解决这个子问题来解决我们要干什么这个大问题；</li>
+</ul>
+<p><strong>那么大家先把自己想到的做法说一下</strong></p>
+<ul>
+<li>​</li>
+<li>​</li>
+<li>​</li>
+<li>​</li>
+<li>​</li>
+<li>​</li>
+<li>​</li>
+<li>​</li>
+</ul>
+<p>然后我说一下我想说的</p>
+<h2 id="各种做法"><a href="#各种做法" class="headerlink" title="各种做法"></a>各种做法</h2><h3 id="1-暴力"><a href="#1-暴力" class="headerlink" title="1.暴力"></a>1.暴力</h3><ul>
+<li>首先这是个极其不错的方法，至少错误率会比较低，而且好写，再而且，这是骗分的手段之一；</li>
+<li>然后我们考虑实现</li>
+<li>显然枚举每个单词，然后在文章里挨个匹配</li>
+</ul>
+<p>code：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">&#123;</span><br><span class="line">    R II len1=<span class="built_in">strlen</span>(s[i]<span class="number">+1</span>);</span><br><span class="line">    <span class="keyword">for</span>(R II j=<span class="number">1</span>;j&lt;=len;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(R II k=<span class="number">1</span>;k&lt;=len1;k++)</span><br><span class="line">            <span class="keyword">if</span>(S[j+k<span class="number">-1</span>]!=s[k]) <span class="keyword">break</span> ;</span><br><span class="line">       		<span class="keyword">else</span> <span class="keyword">if</span>(k==len1) ans++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度：$O(n^3)$</strong></p>
+<h3 id="2-KMP优化"><a href="#2-KMP优化" class="headerlink" title="2.KMP优化"></a>2.KMP优化</h3><ul>
+<li>首先这是个不错的优化手段，因为KMP可以把匹配的过程由 $O(n^2)$ 优化到 $O(n)$</li>
+<li>然后我们考虑实现</li>
+<li>显然枚举每个单词，先建立该单词的next，然后在文章里挨个匹配</li>
+</ul>
+<p>code：</p>
+<p><img src="/wloby-web/pic/2.png"></p>
+<p>**复杂度：$O(n^2)$ **</p>
+<h3 id="3-AC自动机优化"><a href="#3-AC自动机优化" class="headerlink" title="3.AC自动机优化"></a>3.AC自动机优化</h3><ul>
+<li>首先名字都变长了，那肯定变 nb 了啊，</li>
+<li>Ta把我们用 KMP 优化后的东西又优化了，妈诶，太强了</li>
+<li>然后我们考虑实现</li>
+<li>显然，不，一点都不显然，不然我还讲个啥啊！！！</li>
+<li>考虑实现：比较重要，详细介绍下</li>
+</ul>
+<h4 id="每个新事物的开始都是异想天开"><a href="#每个新事物的开始都是异想天开" class="headerlink" title="每个新事物的开始都是异想天开"></a>每个新事物的开始都是异想天开</h4><blockquote>
+<p>我们之前是一个个的单词去匹配，那我们能不能把所有的单词放在一起，然后一起匹配咧？？！</p>
+</blockquote>
+<blockquote>
+<p>肯定是可以的啊，我们把文章放在外层循环，然后当前位置去匹配所有的单词就可以了啊</p>
+</blockquote>
+<h4 id="额，上一个好像没什么用"><a href="#额，上一个好像没什么用" class="headerlink" title="额，上一个好像没什么用"></a>额，上一个好像没什么用</h4><blockquote>
+<p>那可咋办啊？？！</p>
+</blockquote>
+<blockquote>
+<p>但是我们已经把单词集中到一起了啊</p>
+</blockquote>
+<blockquote>
+<p>我们发现，如果当前有 k 个单词可以在当前位置匹配上，那这 k 个单词一定有一个公共的前缀，所以嘞，有没有想到 Trie ( • ̀ω•́ )✧</p>
+</blockquote>
+<h4 id="没想到也要想到。。。。"><a href="#没想到也要想到。。。。" class="headerlink" title="没想到也要想到。。。。"></a>没想到也要想到。。。。</h4><blockquote>
+<p>如果上述 k 个单词放到了 Trie 里，然后我们把当前位置(这个位置是上一个枚举到的位置)在 Trie 中匹配，是不是就直接可以一次匹配多个串了？？</p>
+</blockquote>
+<blockquote>
+<p>＼＼\٩(‘ω’)و&#x2F;&#x2F;／／</p>
+</blockquote>
+<blockquote>
+<p> 这样我们就可以把多个单词放到一起考虑了，太棒了</p>
+</blockquote>
+<h4 id="但是那些和这-k-个不一样的呢"><a href="#但是那些和这-k-个不一样的呢" class="headerlink" title="但是那些和这 k 个不一样的呢"></a>但是那些和这 k 个不一样的呢</h4><blockquote>
+<p>就不要了呗，反正我们在 Trie 上也匹配不到这几个不一样的串</p>
+</blockquote>
+<blockquote>
+<p>A：有用吗？</p>
+</blockquote>
+<blockquote>
+<p>B：没用。。。</p>
+</blockquote>
+<blockquote>
+<p>A：扔！！！</p>
+</blockquote>
+<h2 id="code实现"><a href="#code实现" class="headerlink" title="code实现"></a>code实现</h2><h3 id="Build-fail"><a href="#Build-fail" class="headerlink" title="Build_fail"></a>Build_fail</h3><p>我们第二步是建立fail指针，所以我们需要了解fail具体是干什么的；</p>
+<h4 id="插播一段-fail"><a href="#插播一段-fail" class="headerlink" title="插播一段 fail"></a>插播一段 fail</h4><ul>
+<li>类似KMP中的next <code>令当前节点 A 的 fail 所指向的是节点 B ，则有 B 是A的后缀【解释】</code></li>
+<li>这个 fail 就是AC自动机的优化之处 <code>因为它和 KMP 的 next 数组一样，可以跳转到至少不会更差的地方</code></li>
+<li>为什么不会更差？？！ <code>我们保证了当前节点 A 的 fail 指针所指向的节点 B ，以 B 为结尾的单词串一定是以 A 为结尾的单词的后缀；至于原因，自行KMP</code></li>
+<li>解释结束 <code>不懂快问，不然就继续了</code></li>
+</ul>
+<p>over</p>
+<p>然后我们去考虑如何实现；</p>
+<p>我们知道一个显然的事情：<code>一个字符串的后缀一定比该字符串短；</code></p>
+<p>再根据前面说的 fail  所指向的含义；</p>
+<p>可知，<strong>当前节点 A 的 fail 的深度一定比 A 小；</strong></p>
+<p>然后，根据 KMP 的 next 的求法：<code>当前点 A 的 next 由 A 的前一个点 B 的 next 推出；</code></p>
+<p>那我们放到 Trie 上，当前节点 A 的前一个节点就是 A 的父亲，所以我们 A 的 fail 是由它的父亲推出，同理，这颗 Trie 上的任何一个节点都满足这个性质；（如下图）</p>
+<p>那么我们就可以用一种数据结构来处理：    **queue **</p>
+<p><img src="/wloby-web/pic/3.png"></p>
+<p>每一层的构建方式都类比上一层</p>
+<p>理解或者没理解，我现在在图上模拟一下建立 fail 的过程</p>
+<p><img src="/wloby-web/pic/4.png"></p>
+<p>(复制到画板上。。。。。。。。。。。。。)</p>
+<p>code：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> II int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R register</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> I 1623456</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span> &#123;</span><br><span class="line">	II up[<span class="number">27</span>];</span><br><span class="line">	II is, fail;</span><br><span class="line">&#125;Tr[I];</span><br><span class="line"></span><br><span class="line">II _tot=<span class="number">-1</span>,root,n,len,ans;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span> a[I];</span><br><span class="line"></span><br><span class="line"><span class="function">II <span class="title">new_one</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	_tot++;</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=<span class="number">27</span>;i++)</span><br><span class="line">		Tr[_tot].up[i]=<span class="number">0</span>;</span><br><span class="line">	Tr[_tot].is=<span class="number">0</span>;</span><br><span class="line">	Tr[_tot].fail=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> _tot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fffail</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	queue &lt;II&gt; Q;</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(Tr[root].up[i]) &#123;</span><br><span class="line">			Tr[Tr[root].up[i]].fail=root;</span><br><span class="line">			Q.<span class="built_in">push</span>(Tr[root].up[i]);</span><br><span class="line">		&#125; <span class="keyword">else</span> Tr[root].up[i]=root;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (<span class="keyword">not</span> Q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">		R II pi=Q.<span class="built_in">front</span>(); Q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=<span class="number">26</span>;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			R II go=Tr[pi].fail;</span><br><span class="line">			R II son=Tr[pi].up[i];</span><br><span class="line">			<span class="keyword">if</span>(Tr[pi].up[i]) &#123;</span><br><span class="line">				<span class="keyword">while</span> (<span class="keyword">not</span> Tr[go].up[i] <span class="keyword">and</span> go) &#123;</span><br><span class="line">					go=Tr[go].fail;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(<span class="keyword">not</span> Tr[go].up[i]) Tr[son].fail=root;</span><br><span class="line">				<span class="keyword">else</span> Tr[son].fail=Tr[go].up[i];</span><br><span class="line">				Q.<span class="built_in">push</span>(son);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				Tr[son].up[i]=Tr[Tr[pi].fail].up[i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	root=<span class="built_in">new_one</span>();</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,a<span class="number">+1</span>);</span><br><span class="line">		len=<span class="built_in">strlen</span>(a<span class="number">+1</span>);</span><br><span class="line">		R II pi=root;</span><br><span class="line">		<span class="keyword">for</span>(R II j=<span class="number">1</span>;j&lt;=len;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			R II o=a[j]-<span class="string">&#x27;a&#x27;</span><span class="number">+1</span>;</span><br><span class="line">			<span class="keyword">if</span>(<span class="keyword">not</span> Tr[pi].up[o]) Tr[pi].up[o]=<span class="built_in">new_one</span>();</span><br><span class="line">			pi=Tr[pi].up[o];</span><br><span class="line">		&#125;</span><br><span class="line">		Tr[pi].is++;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">fffail</span>();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,a<span class="number">+1</span>);</span><br><span class="line">	len=<span class="built_in">strlen</span>(a<span class="number">+1</span>);</span><br><span class="line">	R II pi=root;</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		R II o=a[i]-<span class="string">&#x27;a&#x27;</span><span class="number">+1</span>;</span><br><span class="line">		R II pr=pi;</span><br><span class="line">		<span class="keyword">while</span> (<span class="keyword">not</span> Tr[pi].up[o] <span class="keyword">and</span> pi) pi=Tr[pi].fail;</span><br><span class="line">		pi=Tr[pi].up[o];</span><br><span class="line">		<span class="keyword">if</span>(<span class="keyword">not</span> pi) pi=root;</span><br><span class="line">		<span class="keyword">while</span> (pr <span class="keyword">and</span> Tr[pr].is&gt;=<span class="number">0</span>) &#123;</span><br><span class="line">			ans+=Tr[pr].is;</span><br><span class="line">			Tr[pr].is=<span class="number">-1</span>;</span><br><span class="line">			pr=Tr[pr].fail;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>几十年前的代码了，勿喷。。。。。。。。。。。。。。。</p>
+<h2 id="简单应用"><a href="#简单应用" class="headerlink" title="简单应用"></a>简单应用</h2><p><em>简单应用在OI里当然是做题了。。。。。。。。。。。。。。</em></p>
+<ul>
+<li>T1 luogu AC自动机(简单版)and(加强版)</li>
+<li>T2 HDU 3341 Lost’s revenge</li>
+<li>T3 HDU 2896 病毒侵袭</li>
+<li>T4 并没有T4，略略略，以上的T1理解，T2，T3。。。。算了</li>
+</ul>
+<h2 id="solution"><a href="#solution" class="headerlink" title="solution"></a>solution</h2><ul>
+<li>T1 裸的AC自动机（都模板了好不，刚讲的）</li>
+<li>T2 。。。。。。。。。。。。</li>
+<li>T3 。。。。。。。。。。。。。。</li>
+</ul>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1><p>当然有PPT的</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/wloby-web/">首页</a></li>
+        
+          <li><a href="/wloby-web/about/">关于</a></li>
+        
+          <li><a href="/wloby-web/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Trie-or-%E5%AD%97%E5%85%B8%E6%A0%91"><span class="toc-number">2.</span> <span class="toc-text">Trie or 字典树</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E6%A0%91%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">字典树的概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%82%A3%E4%BB%80%E4%B9%88%E6%98%AFTrie%EF%BC%9F%EF%BC%9F%EF%BC%81"><span class="toc-number">2.2.</span> <span class="toc-text">那什么是Trie？？！</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E6%A0%91%E6%9C%89%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8%EF%BC%9A"><span class="toc-number">2.3.</span> <span class="toc-text">字典树有三个基本性质：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#But-why%EF%BC%9F%EF%BC%9F%EF%BC%81"><span class="toc-number">2.4.</span> <span class="toc-text">But why？？！</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#because-%E8%BF%99%E6%98%AF%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="toc-number">2.5.</span> <span class="toc-text">because 这是基本性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">2.6.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">2.7.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AC%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="toc-number">3.</span> <span class="toc-text">AC自动机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">3.1.</span> <span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3"><span class="toc-number">3.1.1.</span> <span class="toc-text">了解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">3.1.2.</span> <span class="toc-text">其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E8%87%B4%E6%80%9D%E8%B7%AF"><span class="toc-number">3.2.</span> <span class="toc-text">大致思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AD%A5%E8%B5%B0"><span class="toc-number">3.2.1.</span> <span class="toc-text">三步走</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E6%83%B3%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.3.</span> <span class="toc-text">思想实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E8%A6%81%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F%EF%BC%9F%EF%BC%81"><span class="toc-number">3.3.1.</span> <span class="toc-text">我要做什么？？！</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E5%81%9A%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">各种做法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9A%B4%E5%8A%9B"><span class="toc-number">3.4.1.</span> <span class="toc-text">1.暴力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-KMP%E4%BC%98%E5%8C%96"><span class="toc-number">3.4.2.</span> <span class="toc-text">2.KMP优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-AC%E8%87%AA%E5%8A%A8%E6%9C%BA%E4%BC%98%E5%8C%96"><span class="toc-number">3.4.3.</span> <span class="toc-text">3.AC自动机优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AA%E6%96%B0%E4%BA%8B%E7%89%A9%E7%9A%84%E5%BC%80%E5%A7%8B%E9%83%BD%E6%98%AF%E5%BC%82%E6%83%B3%E5%A4%A9%E5%BC%80"><span class="toc-number">3.4.3.1.</span> <span class="toc-text">每个新事物的开始都是异想天开</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%9D%EF%BC%8C%E4%B8%8A%E4%B8%80%E4%B8%AA%E5%A5%BD%E5%83%8F%E6%B2%A1%E4%BB%80%E4%B9%88%E7%94%A8"><span class="toc-number">3.4.3.2.</span> <span class="toc-text">额，上一个好像没什么用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B2%A1%E6%83%B3%E5%88%B0%E4%B9%9F%E8%A6%81%E6%83%B3%E5%88%B0%E3%80%82%E3%80%82%E3%80%82%E3%80%82"><span class="toc-number">3.4.3.3.</span> <span class="toc-text">没想到也要想到。。。。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%86%E6%98%AF%E9%82%A3%E4%BA%9B%E5%92%8C%E8%BF%99-k-%E4%B8%AA%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84%E5%91%A2"><span class="toc-number">3.4.3.4.</span> <span class="toc-text">但是那些和这 k 个不一样的呢</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#code%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.5.</span> <span class="toc-text">code实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Build-fail"><span class="toc-number">3.5.1.</span> <span class="toc-text">Build_fail</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E6%92%AD%E4%B8%80%E6%AE%B5-fail"><span class="toc-number">3.5.1.1.</span> <span class="toc-text">插播一段 fail</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8"><span class="toc-number">3.6.</span> <span class="toc-text">简单应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solution"><span class="toc-number">3.7.</span> <span class="toc-text">solution</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#END"><span class="toc-number">4.</span> <span class="toc-text">END</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&text=Tire and AC自动机"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&is_video=false&description=Tire and AC自动机"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tire and AC自动机&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&title=Tire and AC自动机"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&name=Tire and AC自动机&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/18/2018-04-18-Tire%20and%20AC%E8%87%AA%E5%8A%A8%E6%9C%BA/&t=Tire and AC自动机"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2026
+    Joob1n
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/wloby-web/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

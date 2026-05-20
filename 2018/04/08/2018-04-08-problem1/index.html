@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="lxw’s adventures题目名称桌布颜色银行卡文件名tablecloth.cpp&#x2F;c&#x2F;pascolor.cpp&#x2F;c&#x2F;pascard.cpp&#x2F;c&#x2F;pas时间限制1s1s1s空间限制128MB128MB128MB 桌布题目背景​    围绕着一张桌子，lxw 开始了 Ta 的装饰 题目描述​    Ta 先在这张桌子上放了一张桌布，这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="problem1">
+<meta property="og:url" content="https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/index.html">
+<meta property="og:site_name" content="Wloby">
+<meta property="og:description" content="lxw’s adventures题目名称桌布颜色银行卡文件名tablecloth.cpp&#x2F;c&#x2F;pascolor.cpp&#x2F;c&#x2F;pascard.cpp&#x2F;c&#x2F;pas时间限制1s1s1s空间限制128MB128MB128MB 桌布题目背景​    围绕着一张桌子，lxw 开始了 Ta 的装饰 题目描述​    Ta 先在这张桌子上放了一张桌布，这">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-04-08T04:48:38.000Z">
+<meta property="article:modified_time" content="2026-05-20T11:24:58.917Z">
+<meta property="article:author" content="Joob1n">
+<meta property="article:tag" content="problem of OI">
+<meta property="article:tag" content="tests">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/wloby-web/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/wloby-web/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/wloby-web/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>problem1</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/wloby-web/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/wloby-web/2018/04/08/2018-04-08-%E5%AF%B9%E6%8B%8D/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/wloby-web/2018/04/08/2018-04-08-HEOI2018%E9%A2%93%E5%BA%9F%E8%AE%B0/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&text=problem1"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&is_video=false&description=problem1"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=problem1&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&name=problem1&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&t=problem1"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lxw%E2%80%99s-adventures"><span class="toc-number">1.</span> <span class="toc-text">lxw’s adventures</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%8C%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text">桌布</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-number">2.1.</span> <span class="toc-text">题目背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.2.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5"><span class="toc-number">2.5.</span> <span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA"><span class="toc-number">2.6.</span> <span class="toc-text">样例输出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2"><span class="toc-number">3.</span> <span class="toc-text">颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%83%8C%E6%99%AF-1"><span class="toc-number">3.1.</span> <span class="toc-text">题目背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">3.2.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">3.3.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">3.4.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5-1"><span class="toc-number">3.5.</span> <span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA-1"><span class="toc-number">3.6.</span> <span class="toc-text">样例输出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%B6%E8%A1%8C%E5%8D%A1"><span class="toc-number">4.</span> <span class="toc-text">银行卡</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%83%8C%E6%99%AF-2"><span class="toc-number">4.1.</span> <span class="toc-text">题目背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">4.2.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-2"><span class="toc-number">4.3.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-2"><span class="toc-number">4.4.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5-2"><span class="toc-number">4.5.</span> <span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA-2"><span class="toc-number">4.6.</span> <span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#THE-END"><span class="toc-number">4.7.</span> <span class="toc-text">THE END</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BY-Peipei"><span class="toc-number">4.8.</span> <span class="toc-text">BY Peipei</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lxw%E2%80%99s-adventures-solution"><span class="toc-number">5.</span> <span class="toc-text">lxw’s adventures solution</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%8C%E5%B8%83%EF%BC%88teblecloth%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">桌布（teblecloth）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%EF%BC%88color%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">颜色（color）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%8B-%E4%B8%80%E8%A1%8C-n-%E4%B8%AA%E6%A0%BC%E5%AD%90%EF%BC%8C%E8%A6%81%E6%B1%82%E6%94%AF%E6%8C%81%E4%BB%A5%E4%B8%8B%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">5.3.</span> <span class="toc-text">​    一行 $n$ 个格子，要求支持以下操作：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%82%B9%E4%BF%AE%E6%94%B9"><span class="toc-number">5.4.</span> <span class="toc-text">单点修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%82%A3%E4%B9%88%E6%88%91%E4%BB%AC%E5%BC%80-c-%E6%A3%B5%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%8C%E5%88%86%E5%88%AB%E7%BB%B4%E6%8A%A4%E6%AF%8F%E4%B8%AA%E9%A2%9C%E8%89%B2%EF%BC%8C%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AA%E9%A2%98%E5%B0%B1%E5%8F%98%E4%B8%BA%E4%BA%86%E8%BF%99%E6%A0%B7%E5%AD%90"><span class="toc-number">5.5.</span> <span class="toc-text">  那么我们开 $c$ 棵线段树，分别维护每个颜色，那么这个题就变为了这样子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x-%E5%8D%95%E7%82%B9%E4%BF%AE%E6%94%B9%E5%B0%B1%E6%98%AF%E5%9C%A8%E5%8E%9F%E6%9D%A5%E9%A2%9C%E8%89%B2%E4%B8%AD%E5%88%A0%E8%8A%82%E7%82%B9%EF%BC%8C%E5%9C%A8%E6%96%B0%E7%9A%84%E9%A2%9C%E8%89%B2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E8%8A%82%E7%82%B9"><span class="toc-number">5.6.</span> <span class="toc-text">[x] 单点修改就是在原来颜色中删节点，在新的颜色中添加节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x-%E5%9C%A8%E7%BB%99%E5%AE%9A%E7%9A%84%E9%A2%9C%E8%89%B2%E7%9A%84%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%AD%E6%9F%A5%E8%AF%A2%E6%9C%80%E9%9D%A0%E4%B8%AD%E9%97%B4%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">5.7.</span> <span class="toc-text">[x] 在给定的颜色的线段树中查询最靠中间的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%B6%E8%A1%8C%E5%8D%A1%EF%BC%88card%EF%BC%89"><span class="toc-number">5.8.</span> <span class="toc-text">银行卡（card）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#end"><span class="toc-number">5.9.</span> <span class="toc-text">end</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        problem1
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Joob1n</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-04-08T04:48:38.000Z" class="dt-published" itemprop="datePublished">2018-04-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/wloby-web/tags/problem-of-OI/" rel="tag">problem of OI</a>, <a class="p-category" href="/wloby-web/tags/tests/" rel="tag">tests</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h1 id="lxw’s-adventures"><a href="#lxw’s-adventures" class="headerlink" title="lxw’s adventures"></a>lxw’s adventures</h1><p>题目名称<br>桌布<br>颜色<br>银行卡<br>文件名<br>tablecloth.cpp&#x2F;c&#x2F;pas<br>color.cpp&#x2F;c&#x2F;pas<br>card.cpp&#x2F;c&#x2F;pas<br>时间限制<br>1s<br>1s<br>1s<br>空间限制<br>128MB<br>128MB<br>128MB</p>
+<h1 id="桌布"><a href="#桌布" class="headerlink" title="桌布"></a>桌布</h1><h5 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h5><p>​    围绕着一张桌子，lxw 开始了 Ta 的装饰</p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>​    Ta 先在这张桌子上放了一张桌布，这张桌布呢，上面画了张图，就是那种 OI 中的有点和边的图，然后呢，这个图是一个联通块，而且边是无向的，然而 lxw 不喜欢一个联通块的图，Ta 想通过破坏一些边来使得这个图变成 $k$ 个联通块，然而每条边都是有脾气的 $w$，假设这个脾气值是 $w_i$ 那么 lxw 想要把这条边拆掉就要忍受 $w_i$ 的怒气，所以呢，lxw 想知道为了达到 Ta 的目的，至少需要忍受多少怒气，然而 lxw 那么可爱，所以这个艰难的任务就交给你来完成了 QAQ</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>​    第一行三个数，$n,m,k$</p>
+<p>​    接下来 $m$ 行，每行三个数 $x_i , y_i , z_i$ 代表 $x_i$ 和 $y_i$ 之间有一条怒气值为 $z_i$ 的边</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>​    一行一个数，即 lxw 最少所需要忍受的怒气值</p>
+<h3 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h3><p><code>9 15 4</code><br><code>1 2 154704354</code><br><code>1 3 623440960</code><br><code>1 4 10828032</code><br><code>1 5 622633654</code><br><code>1 6 114426928</code><br><code>1 7 109034202</code><br><code>1 8 104024998</code><br><code>1 9 98657592</code><br><code>3 1 8297</code><br><code>6 1 1115</code><br><code>9 3 27244</code><br><code>1 9 7165</code><br><code>4 3 2057</code><br><code>1 2 18349</code><br><code>2 5 19431</code></p>
+<h3 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h3><p><code>213547088</code></p>
+<p><em>数据范围与约定</em></p>
+<ul>
+<li>$20 %   n\leq 20,m\leq 20$</li>
+<li>$60%   n\leq10^3,m\leq2\times10^3$</li>
+<li>$100%   n\leq10^5 , m\leq2\times10^5   $怒气值$\leq 10^9$</li>
+</ul>
+<hr>
+<h1 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h1><h5 id="题目背景-1"><a href="#题目背景-1" class="headerlink" title="题目背景"></a>题目背景</h5><p>​    终于，lxw 在你的帮助下用最小的花费做好了桌布，但是这时，天上掉下来了一张银行卡 wow，而且还有一张纸条，写着<code>恭喜您成为我们第233666位幸运用户，这张卡您可以随便刷，但是三天后会被收回</code> ，于是lxw变成了三天的有钱人，就买了一个带有一个好多颜色的长条布</p>
+<h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>​    这张长条布可以看做一个长度为 $n$ 的格子，且只有一行，lxw 看着这张布，一会可能就把其中某个格子的颜色换成了另一种颜色，一会可能问你在 <code>[l,r]</code> 这个区间中，所有的颜色为 $c$ 的格子中，最靠近当前区间中点的格子的位置</p>
+<h3 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h3><p>​    第一行，一个 $n$ ，接下来 $n$ 个数，为每个格子初始颜色，接下来一行，一个 $Q$ ，表示 lxw 的操作个数，再接下来 $Q$ 行，形式为 <code>C x c</code> 或者<code>Q l r c</code> 表示把 $x$ 这个位置的颜色改为 $c$ ，或者询问 <code>[l,r]</code> 这个区间 $c$ 这个颜色(如题)</p>
+<h3 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h3><p>​    对于每个 $Q$ 操作，输出一个数，表示位置(如题)，如果距离一样，输出靠左的位置，如果没有，输出$-1$</p>
+<h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h3><p><code>4</code><br><code>1 8 5 4</code><br><code>6</code><br><code>C 4 1</code><br><code>Q 2 4 3</code><br><code>Q 2 2 8</code><br><code>C 3 0</code><br><code>Q 3 3 1</code><br><code>C 1 0</code></p>
+<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h3><p><code>-1</code><br><code>2</code><br><code>-1</code></p>
+<p><em>数据范围与约定</em></p>
+<ul>
+<li>$30% ,,,,n\leq100 ,m\leq100$</li>
+<li>$60% ,,,,n\leq10^3, m\leq10^3$</li>
+<li>$100% ,,,, n\leq10^5 m\leq10^5 ,,,, 保证 r+l 是偶数且 c\leq9$</li>
+</ul>
+<hr>
+<h1 id="银行卡"><a href="#银行卡" class="headerlink" title="银行卡"></a>银行卡</h1><h5 id="题目背景-2"><a href="#题目背景-2" class="headerlink" title="题目背景"></a>题目背景</h5><p>​    三天过去了，终于银行卡要被收走了，lxw 十分伤心</p>
+<h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>​    在银行卡消失的那一瞬间，lxw 看了一眼这银行卡号，发现这张银行卡的号码每一位都是∈<code>[0,9]</code>，而且对于每一个<code>[0,9]</code>中的数字，下一位只能是某几位数字之一，比如：$3$ 后面只能是 $0,1,5$ 之一，那么号码中只能存在<code>...30...</code> 、<code>...31...</code> 、<code>...35...</code>这样的形式，现在 lxw 告诉你了每一位后面可以跟的数字集合，请你告诉 Ta 可能有多少种号码满足这个限制</p>
+<h3 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h3><p>​    第一行一个 $n$ ，表示号码长度，接下来 $10$ 行，每行开始有一个数 $k$ 接下来 $k$ 个数，表示如题，$10$ 行分别代表 <code>[0,9]</code> 中的每个数的信息</p>
+<h3 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h3><p>​    一行，一个数，即方案数，由于 $ans$ 可能很大，要求对 $20010827$ 取模后输出</p>
+<h3 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h3><p><code>3</code><br><code>2 0 3</code><br><code>2 0 1</code><br><code>2 5 1</code><br><code>3 0 6 4</code><br><code>1 1</code><br><code>2 2 4</code><br><code>0</code><br><code>2 7 2</code><br><code>2 0 3</code><br><code>2 2 4</code></p>
+<h3 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h3><p><code>33</code></p>
+<p><em>数据范围与约定</em></p>
+<ul>
+<li>$10% ,,,, n\leq5$</li>
+<li>$60% ,,,, n\leq10^6$</li>
+<li>$100% ,,,, n\leq10^{18} $</li>
+</ul>
+<hr>
+<hr>
+<h2 id="THE-END"><a href="#THE-END" class="headerlink" title="THE END"></a>THE END</h2><h2 id="BY-Peipei"><a href="#BY-Peipei" class="headerlink" title="BY Peipei"></a>BY Peipei</h2><hr>
+<hr>
+<h1 id="lxw’s-adventures-solution"><a href="#lxw’s-adventures-solution" class="headerlink" title="lxw’s adventures solution"></a>lxw’s adventures solution</h1><h2 id="桌布（teblecloth）"><a href="#桌布（teblecloth）" class="headerlink" title="桌布（teblecloth）"></a>桌布（teblecloth）</h2><p>​    是不是一下子就想到了生成树？？！</p>
+<p>​    其实就是生成树+贪心</p>
+<p>​    首先我们从大到小加边，直到再加一条边就由 $k$ 个联通块变为 $k-1$ 个联通块为止</p>
+<p>​    然后呢，已经加进去的边是不属于我们要删的边集的，那么对于剩下的没加进去的边，只有一部分是需要删的，为什么呢？？！</p>
+<p>​    如果说，在剩下的边中，由一些边所连的两个点已经在一个联通块了，那么这条边不应该删，因为这条边删了不会影响联通块数量，但是会是 $ans$ 变大，与我们的意志相违背，所以，我们要把没有加进去的边中，已经连接两个属于同一联通块的边加进图里</p>
+<p>​    做完这些后还没有加进去的边就是需要删的边</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> II int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LO long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IL inline</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R register</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> I 1023546</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt; <span class="function">IL <span class="type">void</span> <span class="title">of</span> <span class="params">(R T &amp;a)</span> </span>&#123;</span><br><span class="line">    R <span class="type">char</span> c=<span class="built_in">getchar</span> (); R T w=<span class="number">1</span>, p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(c)) &#123; <span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>) w=<span class="number">-1</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(c)) &#123; p=p*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">    a=w*p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* -------------------- Peipei -------------------- */</span></span><br><span class="line"></span><br><span class="line">II n,END,all,m,k;</span><br><span class="line">LO ans;</span><br><span class="line">II fa[I];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">POI</span> &#123;</span><br><span class="line">	II x,y;</span><br><span class="line">	<span class="keyword">friend</span> <span class="type">bool</span> <span class="keyword">operator</span> &lt; (POI a1,POI a2)</span><br><span class="line">		&#123; <span class="keyword">return</span> a<span class="number">1.</span>x==a<span class="number">2.</span>x ? a<span class="number">1.</span>y&lt;a<span class="number">2.</span>y : a<span class="number">1.</span>x&lt;a<span class="number">2.</span>x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">map &lt;POI,II&gt; nu;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">UI</span> &#123;</span><br><span class="line">	II x,y,w;</span><br><span class="line">	<span class="keyword">friend</span> <span class="type">bool</span> <span class="keyword">operator</span> &lt; (UI a1,UI a2)</span><br><span class="line">		&#123; <span class="keyword">return</span> a<span class="number">1.</span>w&lt;a<span class="number">2.</span>w; &#125;</span><br><span class="line">&#125; aa[I];</span><br><span class="line"></span><br><span class="line"><span class="function">IL II <span class="title">find</span><span class="params">(R II x)</span> </span>&#123; <span class="keyword">return</span> fa[x]==x ? x : fa[x]=<span class="built_in">find</span>(fa[x]) ; &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;tablecloth.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;tablecloth.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">of</span>(n); <span class="built_in">of</span>(m); <span class="built_in">of</span>(k);</span><br><span class="line">    R II len=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">    	<span class="built_in">of</span>(aa[len].x); <span class="built_in">of</span>(aa[len].y); <span class="built_in">of</span>(aa[len].w);</span><br><span class="line">    	<span class="keyword">if</span>(aa[len].x&gt;aa[len].y) <span class="built_in">swap</span>(aa[len].x,aa[len].y);</span><br><span class="line">    	<span class="keyword">if</span>(nu.<span class="built_in">count</span>((POI) &#123;aa[len].x,aa[len].y&#125;)) &#123;</span><br><span class="line">    		aa[nu[(POI) &#123;aa[len].x,aa[len].y&#125;]].w+=aa[len].w;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			nu[(POI) &#123;aa[len].x,aa[len].y&#125;]=len;</span><br><span class="line">			len++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	m=len<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=m;i++) ans+=aa[i].w;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">sort</span>(aa<span class="number">+1</span>,aa+m<span class="number">+1</span>);</span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=n;i++) fa[i]=i; all=n;</span><br><span class="line">	<span class="keyword">for</span>(R II i=m;i;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		R II x=<span class="built_in">find</span>(aa[i].x), y=<span class="built_in">find</span>(aa[i].y);</span><br><span class="line">		<span class="keyword">if</span>(x!=y) &#123;</span><br><span class="line">			<span class="keyword">if</span>(all==k) &#123; END=i; <span class="keyword">break</span> ; &#125;</span><br><span class="line">			fa[x]=y; all--;</span><br><span class="line">		&#125;</span><br><span class="line">		ans-=aa[i].w;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=END;i++)</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">find</span>(aa[i].x)==<span class="built_in">find</span>(aa[i].y)) ans-=aa[i].w;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,ans);</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="颜色（color）"><a href="#颜色（color）" class="headerlink" title="颜色（color）"></a>颜色（color）</h2><h2 id="​-一行-n-个格子，要求支持以下操作："><a href="#​-一行-n-个格子，要求支持以下操作：" class="headerlink" title="​    一行 $n$ 个格子，要求支持以下操作："></a>​    一行 $n$ 个格子，要求支持以下操作：</h2><h2 id="单点修改"><a href="#单点修改" class="headerlink" title="单点修改"></a>单点修改</h2><p><code>[l,r]</code> 中给定颜色最靠中间的位置</p>
+<h2 id="那么我们开-c-棵线段树，分别维护每个颜色，那么这个题就变为了这样子"><a href="#那么我们开-c-棵线段树，分别维护每个颜色，那么这个题就变为了这样子" class="headerlink" title="  那么我们开 $c$ 棵线段树，分别维护每个颜色，那么这个题就变为了这样子"></a>  那么我们开 $c$ 棵线段树，分别维护每个颜色，那么这个题就变为了这样子</h2><h2 id="x-单点修改就是在原来颜色中删节点，在新的颜色中添加节点"><a href="#x-单点修改就是在原来颜色中删节点，在新的颜色中添加节点" class="headerlink" title="[x] 单点修改就是在原来颜色中删节点，在新的颜色中添加节点"></a>[x] 单点修改就是在原来颜色中删节点，在新的颜色中添加节点</h2><h2 id="x-在给定的颜色的线段树中查询最靠中间的位置"><a href="#x-在给定的颜色的线段树中查询最靠中间的位置" class="headerlink" title="[x] 在给定的颜色的线段树中查询最靠中间的位置"></a>[x] 在给定的颜色的线段树中查询最靠中间的位置</h2><p><code>[l,r]</code> 找中间位置，分为<code>[l,mid]</code> 找最右端位置 和 <code>[mid,r]</code> 找最左端位置</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> II int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IL inline</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R register</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> I 100100</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt; <span class="function">IL <span class="type">void</span> <span class="title">of</span> <span class="params">(R T &amp;a)</span> </span>&#123;</span><br><span class="line">    R <span class="type">char</span> c=<span class="built_in">getchar</span> (); R T w=<span class="number">1</span>, p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(c)) &#123; <span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>) w=<span class="number">-1</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(c)) &#123; p=p*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">    a=w*p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* -------------------- Peipei -------------------- */</span></span><br><span class="line"></span><br><span class="line">II now,n,Q,l,r,ppc;</span><br><span class="line">II c[I];</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Tree</span> &#123;</span><br><span class="line">    II l,r,lp,rp;</span><br><span class="line">    <span class="built_in">Tree</span> () &#123;l=r=<span class="number">0</span>; lp=<span class="number">1e9</span>; rp=<span class="number">-1e9</span>;&#125;</span><br><span class="line">    <span class="keyword">friend</span> Tree <span class="keyword">operator</span> + (Tree a1,Tree a2) &#123;</span><br><span class="line">        R Tree c;</span><br><span class="line">        c.l=a<span class="number">1.l</span>; c.r=a<span class="number">2.</span>r;</span><br><span class="line">        c.lp=<span class="built_in">min</span>(a<span class="number">1.l</span>p,a<span class="number">2.l</span>p);</span><br><span class="line">        c.rp=<span class="built_in">max</span>(a<span class="number">1.</span>rp,a<span class="number">2.</span>rp);</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">IL <span class="type">void</span> <span class="title">ag</span><span class="params">()</span> </span>&#123;lp=<span class="number">1e9</span>; rp=<span class="number">-1e9</span>;&#125;</span><br><span class="line">&#125; Tr[<span class="number">10</span>][I*<span class="number">4</span>];</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> f Tr[now][o]</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ls Tr[now][o&lt;&lt;1]</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> rs Tr[now][o&lt;&lt;1|1]</span></span><br><span class="line"></span><br><span class="line"><span class="function">IL <span class="type">void</span> <span class="title">build_t</span><span class="params">(R II o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(f.l==f.r) &#123;</span><br><span class="line">        <span class="keyword">if</span>(c[f.l]==now) f.lp=f.rp=f.l;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    ls.l=f.l; ls.r=(f.l+f.r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    rs.l=ls.r<span class="number">+1</span>; rs.r=f.r;</span><br><span class="line">    <span class="built_in">build_t</span>(o&lt;&lt;<span class="number">1</span>); <span class="built_in">build_t</span>(o&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">    f=ls+rs;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IL <span class="type">void</span> <span class="title">del</span><span class="params">(R II o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(f.l==f.r) &#123;</span><br><span class="line">        <span class="keyword">if</span>(!ppc) f.<span class="built_in">ag</span>();</span><br><span class="line">        <span class="keyword">else</span> f.lp=f.rp=f.l;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(ls.r&gt;=l) <span class="built_in">del</span>(o&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(rs.l&lt;=r) <span class="built_in">del</span>(o&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">    f=ls+rs;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IL Tree <span class="title">query</span><span class="params">(R II o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(f.l&gt;=l &amp;&amp; f.r&lt;=r) <span class="keyword">return</span> f;</span><br><span class="line">    <span class="keyword">if</span>(r&lt;=ls.r) <span class="keyword">return</span> <span class="built_in">query</span>(o&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(l&gt;=rs.l) <span class="keyword">return</span> <span class="built_in">query</span>(o&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">query</span>(o&lt;&lt;<span class="number">1</span>)+<span class="built_in">query</span>(o&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;color.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;color.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">of</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(R II i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">of</span>(c[i]);</span><br><span class="line">    <span class="keyword">for</span>(now=<span class="number">0</span>;now&lt;=<span class="number">9</span>;now++) &#123;</span><br><span class="line">        Tr[now][<span class="number">1</span>].l=<span class="number">1</span>; Tr[now][<span class="number">1</span>].r=n;</span><br><span class="line">        <span class="built_in">build_t</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    R <span class="type">char</span> opt; R II ll,rr,x,to,mid;</span><br><span class="line">    <span class="built_in">of</span>(Q); <span class="keyword">while</span> ( Q -- ) &#123;</span><br><span class="line">        cin &gt;&gt; opt;</span><br><span class="line">        <span class="keyword">if</span>(opt==<span class="string">&#x27;C&#x27;</span>) &#123;</span><br><span class="line">            <span class="built_in">of</span>(x); <span class="built_in">of</span>(to);</span><br><span class="line">            l=r=x;</span><br><span class="line">            ppc=<span class="number">0</span>; now=c[x]; <span class="built_in">del</span>(<span class="number">1</span>);</span><br><span class="line">            c[x]=to;</span><br><span class="line">            ppc=<span class="number">1</span>; now=c[x]; <span class="built_in">del</span>(<span class="number">1</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">of</span>(ll); <span class="built_in">of</span>(rr); <span class="built_in">of</span>(now);</span><br><span class="line">            mid=(ll+rr)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="comment">// cout&lt;&lt;mid&lt;&lt;endl;</span></span><br><span class="line">            l=ll; r=mid; ll=<span class="built_in">query</span>(<span class="number">1</span>).rp;</span><br><span class="line">            l=mid; r=rr; rr=<span class="built_in">query</span>(<span class="number">1</span>).lp;</span><br><span class="line">            <span class="keyword">if</span>(ll==<span class="number">-1e9</span> &amp;&amp; rr==<span class="number">1e9</span>) <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(ll==<span class="number">-1e9</span>) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,rr);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(rr==<span class="number">1e9</span>) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ll);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(mid-ll&lt;=rr-mid) <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ll);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,rr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="银行卡（card）"><a href="#银行卡（card）" class="headerlink" title="银行卡（card）"></a>银行卡（card）</h2><p>​    $n$ 个数字，每个位置是<code>[0,9]</code> 中任意一个，且<code>[0,9]</code> 中每一位的下一位都属于一个固定集合那么我们设</p>
+<blockquote>
+<p>f ( i , j ) 表示 到第 i 个位置，结尾是 j 这个数字的方案数</p>
+</blockquote>
+<p>显然 假设 $k$ 的下一位集合是 $S_k$ 那么转移为 <code>f[i][j] += f[i-1][k]</code> 其中 $j$ ∈ $S_k$</p>
+<p>但是，$n &lt;&#x3D;1000000000000000000$</p>
+<p>那么，考虑优化</p>
+<p>由于是线性递推，则可以用矩阵乘法加速</p>
+<p>初始矩阵为 <code>a[0][j]=1</code> 其中 $j ∈ [0,9]$</p>
+<p>基底矩阵为 <code>c[i][j]=1</code> 其中 $i ∈ [0,9], j ∈ S_i$</p>
+<p>最后矩阵乘法快速幂即可</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> II int</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LO long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IL inline</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> R register</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> I 100100</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PI 20010827</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt; <span class="function">IL <span class="type">void</span> <span class="title">of</span> <span class="params">(R T &amp;a)</span> </span>&#123;</span><br><span class="line">    R <span class="type">char</span> c=<span class="built_in">getchar</span> (); R T w=<span class="number">1</span>, p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="built_in">isdigit</span>(c)) &#123; <span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>) w=<span class="number">-1</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">isdigit</span>(c)) &#123; p=p*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>; c=<span class="built_in">getchar</span> (); &#125;</span><br><span class="line">    a=w*p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="keyword">typename</span> T &gt; <span class="function">IL <span class="type">void</span> <span class="title">inc</span> <span class="params">(T &amp;a,T b)</span> </span>&#123; a+=b;a&gt;=PI?a-=PI:<span class="number">0</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* -------------------- Peipei -------------------- */</span></span><br><span class="line"></span><br><span class="line">LO n;</span><br><span class="line">II ans;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">NU</span> &#123;</span><br><span class="line">    II a[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line">    <span class="built_in">NU</span> () &#123;<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span> a);&#125;</span><br><span class="line">    <span class="keyword">friend</span> NU <span class="keyword">operator</span> * (NU a1,NU a2) &#123;</span><br><span class="line">        R NU d;</span><br><span class="line">        <span class="keyword">for</span>(R II i=<span class="number">0</span>,x;i&lt;=<span class="number">9</span>;i++)</span><br><span class="line">        <span class="keyword">for</span>(R II j=<span class="number">0</span>;j&lt;=<span class="number">9</span>;j++)</span><br><span class="line">        <span class="keyword">for</span>(R II k=<span class="number">0</span>;k&lt;=<span class="number">9</span>;k++) &#123;</span><br><span class="line">            x=<span class="number">1ll</span>*a<span class="number">1.</span>a[i][k]*a<span class="number">2.</span>a[k][j]%PI;</span><br><span class="line">            <span class="built_in">inc</span>(d.a[i][j],x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> d;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; a,c;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;card.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;card.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">of</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(R II i=<span class="number">0</span>,len,x;i&lt;=<span class="number">9</span>;i++)</span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">of</span>(len);len;len--)</span><br><span class="line">        <span class="built_in">of</span>(x), c.a[i][x]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(R II i=<span class="number">0</span>;i&lt;=<span class="number">9</span>;i++) a.a[<span class="number">0</span>][i]=<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(n--;n;n&gt;&gt;=<span class="number">1</span>, c=c*c)</span><br><span class="line">    <span class="keyword">if</span>(n&amp;<span class="number">1</span>) a=a*c;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(R II i=<span class="number">0</span>;i&lt;=<span class="number">9</span>;i++) <span class="built_in">inc</span>(ans,a.a[<span class="number">0</span>][i]);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="end"><a href="#end" class="headerlink" title="end"></a>end</h2>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/wloby-web/">首页</a></li>
+        
+          <li><a href="/wloby-web/about/">关于</a></li>
+        
+          <li><a href="/wloby-web/archives/">归档</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#lxw%E2%80%99s-adventures"><span class="toc-number">1.</span> <span class="toc-text">lxw’s adventures</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%8C%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text">桌布</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-number">2.1.</span> <span class="toc-text">题目背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.2.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.3.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.4.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5"><span class="toc-number">2.5.</span> <span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA"><span class="toc-number">2.6.</span> <span class="toc-text">样例输出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2"><span class="toc-number">3.</span> <span class="toc-text">颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%83%8C%E6%99%AF-1"><span class="toc-number">3.1.</span> <span class="toc-text">题目背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">3.2.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">3.3.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">3.4.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5-1"><span class="toc-number">3.5.</span> <span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA-1"><span class="toc-number">3.6.</span> <span class="toc-text">样例输出</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%93%B6%E8%A1%8C%E5%8D%A1"><span class="toc-number">4.</span> <span class="toc-text">银行卡</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%83%8C%E6%99%AF-2"><span class="toc-number">4.1.</span> <span class="toc-text">题目背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">4.2.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-2"><span class="toc-number">4.3.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-2"><span class="toc-number">4.4.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%85%A5-2"><span class="toc-number">4.5.</span> <span class="toc-text">样例输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B%E8%BE%93%E5%87%BA-2"><span class="toc-number">4.6.</span> <span class="toc-text">样例输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#THE-END"><span class="toc-number">4.7.</span> <span class="toc-text">THE END</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BY-Peipei"><span class="toc-number">4.8.</span> <span class="toc-text">BY Peipei</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lxw%E2%80%99s-adventures-solution"><span class="toc-number">5.</span> <span class="toc-text">lxw’s adventures solution</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%8C%E5%B8%83%EF%BC%88teblecloth%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">桌布（teblecloth）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%EF%BC%88color%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">颜色（color）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%8B-%E4%B8%80%E8%A1%8C-n-%E4%B8%AA%E6%A0%BC%E5%AD%90%EF%BC%8C%E8%A6%81%E6%B1%82%E6%94%AF%E6%8C%81%E4%BB%A5%E4%B8%8B%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">5.3.</span> <span class="toc-text">​    一行 $n$ 个格子，要求支持以下操作：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%82%B9%E4%BF%AE%E6%94%B9"><span class="toc-number">5.4.</span> <span class="toc-text">单点修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%82%A3%E4%B9%88%E6%88%91%E4%BB%AC%E5%BC%80-c-%E6%A3%B5%E7%BA%BF%E6%AE%B5%E6%A0%91%EF%BC%8C%E5%88%86%E5%88%AB%E7%BB%B4%E6%8A%A4%E6%AF%8F%E4%B8%AA%E9%A2%9C%E8%89%B2%EF%BC%8C%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AA%E9%A2%98%E5%B0%B1%E5%8F%98%E4%B8%BA%E4%BA%86%E8%BF%99%E6%A0%B7%E5%AD%90"><span class="toc-number">5.5.</span> <span class="toc-text">  那么我们开 $c$ 棵线段树，分别维护每个颜色，那么这个题就变为了这样子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x-%E5%8D%95%E7%82%B9%E4%BF%AE%E6%94%B9%E5%B0%B1%E6%98%AF%E5%9C%A8%E5%8E%9F%E6%9D%A5%E9%A2%9C%E8%89%B2%E4%B8%AD%E5%88%A0%E8%8A%82%E7%82%B9%EF%BC%8C%E5%9C%A8%E6%96%B0%E7%9A%84%E9%A2%9C%E8%89%B2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E8%8A%82%E7%82%B9"><span class="toc-number">5.6.</span> <span class="toc-text">[x] 单点修改就是在原来颜色中删节点，在新的颜色中添加节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#x-%E5%9C%A8%E7%BB%99%E5%AE%9A%E7%9A%84%E9%A2%9C%E8%89%B2%E7%9A%84%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%B8%AD%E6%9F%A5%E8%AF%A2%E6%9C%80%E9%9D%A0%E4%B8%AD%E9%97%B4%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">5.7.</span> <span class="toc-text">[x] 在给定的颜色的线段树中查询最靠中间的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%B6%E8%A1%8C%E5%8D%A1%EF%BC%88card%EF%BC%89"><span class="toc-number">5.8.</span> <span class="toc-text">银行卡（card）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#end"><span class="toc-number">5.9.</span> <span class="toc-text">end</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&text=problem1"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&is_video=false&description=problem1"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=problem1&body=Check out this article: https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&title=problem1"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&name=problem1&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://joob1n.github.io/wloby-web/2018/04/08/2018-04-08-problem1/&t=problem1"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2026
+    Joob1n
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/wloby-web/">首页</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/wloby-web/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/probberechts">项目</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/wloby-web/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
